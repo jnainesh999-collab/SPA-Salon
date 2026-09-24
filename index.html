@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPA — Premium Beauty & Wellness</title>
+<style>
+:root{--pink:#e83e8c;--deep:#8f245b;--soft:#fff0f7;--cream:#fffafc;--ink:#2d2430;--muted:#756a73;--line:#f0dbe6;--green:#2d9b6f}
+*{box-sizing:border-box} body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--ink);background:var(--cream)}
+button,input,select{font:inherit} button{cursor:pointer}
+.nav{position:sticky;top:0;z-index:20;background:#fff9fcdd;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:14px 6%}
+.logo{font-size:28px;font-weight:900;letter-spacing:5px;color:var(--deep)} .navlinks{display:flex;gap:20px;align-items:center}
+.navlinks button,.link{border:0;background:none;color:var(--ink);font-weight:600}
+.btn{border:0;border-radius:999px;padding:12px 20px;font-weight:800}.primary{background:var(--pink);color:white}.secondary{background:var(--soft);color:var(--deep)}
+.hero{padding:72px 6%;display:grid;grid-template-columns:1.1fr .9fr;gap:45px;align-items:center;background:radial-gradient(circle at 85% 25%,#ffd6e8,transparent 35%),linear-gradient(135deg,#fff,#fff4f9)}
+.eyebrow{color:var(--pink);font-weight:900;text-transform:uppercase;letter-spacing:2px}.hero h1{font-size:clamp(42px,6vw,76px);line-height:.98;margin:14px 0}.hero p{font-size:18px;color:var(--muted);max-width:620px;line-height:1.7}
+.hero-card{background:linear-gradient(145deg,#e83e8c,#9b2d63);color:white;border-radius:34px;padding:32px;min-height:390px;box-shadow:0 25px 60px #c75b8a40;display:flex;flex-direction:column;justify-content:end}
+.hero-card .big{font-size:76px;font-weight:900;opacity:.9}
+.section{padding:65px 6%}.section h2{text-align:center;font-size:38px;margin:0 0 10px}.section>p{text-align:center;color:var(--muted);margin-bottom:35px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card{background:white;border:1px solid var(--line);border-radius:24px;padding:25px;box-shadow:0 12px 30px #7a365a0b}.card h3{margin:10px 0}.price{font-size:25px;font-weight:900;color:var(--deep)}.icon{font-size:35px}
+.booking{max-width:980px;margin:auto;background:white;border:1px solid var(--line);border-radius:28px;padding:28px;box-shadow:0 20px 50px #7a365a12}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.field label{display:block;font-weight:800;margin-bottom:7px}.field input,.field select{width:100%;padding:13px;border:1px solid #e5ccd8;border-radius:13px;background:#fff}.full{grid-column:1/-1}
+.summary{background:var(--soft);border-radius:18px;padding:18px;margin:20px 0}.row{display:flex;justify-content:space-between;padding:7px 0}
+.footer{padding:35px 6%;background:#281a23;color:white;display:flex;justify-content:space-between;gap:20px}.footer small{color:#d9cbd2}
+.modal{display:none;position:fixed;inset:0;background:#20151ccc;z-index:50;align-items:center;justify-content:center;padding:18px}.modal.show{display:flex}.modalbox{background:white;border-radius:24px;max-width:760px;width:100%;max-height:90vh;overflow:auto;padding:28px}
+.close{float:right;border:0;background:#f8e8ef;border-radius:50%;width:36px;height:36px}
+.tabs{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap}.tab{border:1px solid var(--line);background:white;padding:9px 15px;border-radius:999px}.tab.active{background:var(--pink);color:white}
+.statgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.stat{background:var(--soft);border-radius:18px;padding:18px}.stat b{font-size:27px}.admin-table{width:100%;border-collapse:collapse}.admin-table th,.admin-table td{padding:12px;border-bottom:1px solid var(--line);text-align:left}.badge{padding:5px 9px;border-radius:999px;background:#eaf8f2;color:#16734e;font-size:12px;font-weight:800}
+.payment-page{text-align:center}.payment-page h2{margin:5px 0 8px}.upi-box{background:linear-gradient(135deg,#fff1f7,#fff);border:1px solid var(--line);border-radius:22px;padding:20px;margin:18px 0}.qr-wrap{background:white;border:1px solid var(--line);border-radius:18px;padding:14px;display:inline-block;box-shadow:0 10px 25px #7a365a12}.qr-wrap img{display:block;width:220px;height:220px;image-rendering:auto}.upi-id{font-weight:900;color:var(--deep);word-break:break-all}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:left;margin:18px 0}.step{background:var(--soft);padding:12px;border-radius:14px}.step b{display:block;margin-bottom:4px}.pay-note{font-size:13px;color:var(--muted);line-height:1.5}.success-icon{font-size:52px}.toast{position:fixed;right:20px;bottom:20px;background:#2b2027;color:white;padding:14px 18px;border-radius:13px;display:none;z-index:80}.toast.show{display:block}
+@media(max-width:800px){.hero{grid-template-columns:1fr;padding-top:45px}.cards{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.statgrid{grid-template-columns:repeat(2,1fr)}.navlinks .hide-mobile{display:none}.footer{flex-direction:column}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="logo">SPA</div>
+  <div class="navlinks">
+    <button class="hide-mobile" onclick="scrollToId('services')">Services</button>
+    <button class="hide-mobile" onclick="scrollToId('booking')">Book</button>
+    <button class="hide-mobile" onclick="scrollToId('contact')">Contact</button>
+    <button class="btn secondary" onclick="openAdmin()">Admin</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div>
+    <div class="eyebrow">Premium Beauty • Wellness • Care</div>
+    <h1>Feel renewed.<br><span style="color:var(--pink)">Look radiant.</span></h1>
+    <p>A premium beauty and wellness experience in Kalyan East. Discover relaxing spa therapies, beauty rituals and personalised care at SPA.</p>
+    <button class="btn primary" onclick="scrollToId('booking')">Book an Appointment →</button>
+    <button class="btn secondary" onclick="callSalon()">Call +91 8655117618</button>
+  </div>
+  <div class="hero-card">
+    <div class="big">SPA</div>
+    <h2>Regency Park</h2>
+    <p>Shop 9 • Kalyan East<br>Kalyan · Dombivli · Ulhasnagar</p>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <h2>Signature Services</h2><p>Choose a ritual and reserve your preferred time online.</p>
+  <div class="cards">
+    <div class="card"><div class="icon">🧖‍♀️</div><h3>Relaxation Massage</h3><p>Calming full-body wellness session.</p><div class="price">₹1,499</div></div>
+    <div class="card"><div class="icon">✨</div><h3>Facial & Glow Ritual</h3><p>Refreshing facial care for a radiant finish.</p><div class="price">₹999</div></div>
+    <div class="card"><div class="icon">💆‍♀️</div><h3>Head & Shoulder Therapy</h3><p>Focused relaxation for everyday stress.</p><div class="price">₹699</div></div>
+    <div class="card"><div class="icon">🌸</div><h3>Body Scrub</h3><p>Gentle exfoliation and skin-refresh ritual.</p><div class="price">₹1,299</div></div>
+    <div class="card"><div class="icon">💅</div><h3>Beauty Care</h3><p>Premium grooming and beauty essentials.</p><div class="price">₹799</div></div>
+    <div class="card"><div class="icon">💎</div><h3>Premium Wellness Package</h3><p>Curated combination of signature treatments.</p><div class="price">₹2,499</div></div>
+  </div>
+</section>
+
+<section class="section" id="booking">
+  <h2>Book Your Appointment</h2><p>Select a service, date and time. UPI payment opens a payment page with a QR code and UPI-app redirect.</p>
+  <div class="booking">
+    <div class="grid">
+      <div class="field"><label>Full Name</label><input id="name" placeholder="Your name"></div>
+      <div class="field"><label>Phone</label><input id="phone" placeholder="10-digit mobile number"></div>
+      <div class="field"><label>Service</label><select id="service" onchange="updateTotal()">
+        <option value="1499">Relaxation Massage — ₹1,499</option>
+        <option value="999">Facial & Glow Ritual — ₹999</option>
+        <option value="699">Head & Shoulder Therapy — ₹699</option>
+        <option value="1299">Body Scrub — ₹1,299</option>
+        <option value="799">Beauty Care — ₹799</option>
+        <option value="2499">Premium Wellness Package — ₹2,499</option>
+      </select></div>
+      <div class="field"><label>Date</label><input type="date" id="date"></div>
+      <div class="field"><label>Preferred Time</label><select id="time"><option>10:00 AM</option><option>11:30 AM</option><option>1:00 PM</option><option>2:30 PM</option><option>4:00 PM</option><option>5:30 PM</option><option>7:00 PM</option><option>8:30 PM</option></select></div>
+      <div class="field"><label>Payment</label><select id="payment"><option>UPI</option><option>Credit / Debit Card</option><option>Pay at Salon</option></select></div>
+    </div>
+    <div class="summary">
+      <div class="row"><span>Service</span><b id="sumService">Relaxation Massage</b></div>
+      <div class="row"><span>Appointment</span><b id="sumDate">Select date</b></div>
+      <div class="row"><span>Total</span><b id="total">₹1,499</b></div>
+    </div>
+    <button class="btn primary" style="width:100%" onclick="book()">Confirm Appointment & Pay</button>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <h2>Visit SPA</h2><p>Premium beauty and wellness care for Kalyan–Dombivli–Ulhasnagar.</p>
+  <div class="cards">
+    <div class="card"><h3>📍 Branch</h3><p>Regency Park, Shop 9<br>Kalyan East, Maharashtra</p></div>
+    <div class="card"><h3>📞 Appointment</h3><p><a href="tel:+918655117618" style="color:var(--deep);font-weight:900;text-decoration:none;font-size:18px">+91 8655117618</a></p><button class="btn secondary" onclick="callSalon()">Call Now</button></div>
+    <div class="card"><h3>🕐 Online Booking</h3><p>Choose your service and preferred slot through the booking form above.</p></div>
+  </div>
+</section>
+
+<footer class="footer"><div><b>SPA</b><br><small>Premium Beauty & Wellness</small></div><div><small>Regency Park, Shop 9, Kalyan East<br>Serving Kalyan · Dombivli · Ulhasnagar</small></div></footer>
+
+<div class="modal" id="modal"><div class="modalbox"><button class="close" onclick="closeModal()">×</button><div id="modalContent"></div></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const $=id=>document.getElementById(id);
+let bookings=JSON.parse(localStorage.getItem('spaBookings')||'[]');
+function scrollToId(id){$(id).scrollIntoView({behavior:'smooth'})}
+function callSalon(){location.href='tel:+918655117618'}
+function updateTotal(){
+  const s=$('service'), val=Number(s.value);
+  $('total').textContent='₹'+val.toLocaleString('en-IN');
+  $('sumService').textContent=s.options[s.selectedIndex].text.split(' — ')[0];
+  $('sumDate').textContent=$('date').value||'Select date';
+}
+$('date').addEventListener('change',updateTotal);
+function toast(t){$('toast').textContent=t;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2800)}
+function book(){
+  const name=$('name').value.trim(), phone=$('phone').value.trim(), date=$('date').value, time=$('time').value;
+  if(!name||!phone||!date){toast('Please complete name, phone and date.');return}
+  const item={id:'SPA'+Date.now().toString().slice(-6),name,phone,service:$('sumService').textContent,date,time,total:Number($('service').value),payment:$('payment').value,status:'Payment Pending'};
+  if(item.payment==='UPI'){
+    showPaymentPage(item);
+  } else {
+    item.status='Confirmed'; bookings.push(item); localStorage.setItem('spaBookings',JSON.stringify(bookings)); showConfirmation(item); $('name').value='';$('phone').value='';
+  }
+}
+function upiUrl(item){
+  return 'upi://pay?pa='+encodeURIComponent('918454057269@waaxis')+'&pn='+encodeURIComponent('SPA Regency Park')+'&am='+encodeURIComponent(item.total.toFixed(2))+'&cu=INR&tn='+encodeURIComponent('SPA Booking '+item.id);
+}
+const EMBEDDED_QR={"1499":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYgAAAGIAQAAAABzOEqLAAADBElEQVR4nO1by3IkIQyTtub/f1l7kGWGwx5yaJbQZKbm0WlVMI4wsg2FH/78+SngIi7iIi7iIg5EfACA/ixQFJGnAAICob5jVztOQXwAeJ7LKxQpUKAIiaA03bGnHacg7A/zAJDZANQrzIxmyqpRvRfxmb5RoGkg1pdeq1aO6iL8I0KApHxRXfqvo3oTovjhKTcTRBEV10MZDKfsaccpCKjYAEePfz3GzXvacQriA4z/fRGmRAVwfx6hfNmoXo4gQNDOkGUIYL+odlucEStG9WZEwoWUiCEgJPE1gFd/PI5wPPe+Vt7rOozbPQRVq5d49cfziOhzgoJYboDJkCehEUD2tOMohKV5zXs5I5sqeQ1rebizHSchOmlIb6+KKCLouKLaZW1uxy9HQBYgwjTpvpTr+X71xyKEQgiUH8gkFe0oL2CXH48jqv4hdBbXcpCswF45lNryLhrVexGswobpAKTSIWsSjPdiz6Z2nIIwP5IzZIlzZa1iv5dHdrXjFARDh1GdVYvCL1aMHNaedpyCiD963sshwy+5IUJxTzvOQjhx2NXABJXa81qBRKPvbMcxiO4nSR63pHqnfcHaA+9tx69HpJ+hgviofLAafTrZm7rtnnachqCSTJwaTSj3+3gpu/mrxxFDD7LmmxCZTAmRKlWXCPe04xREqe5R4vhuUPzShpEku9pxFMJFDilLUpOB9ai91Y3nqxAO2JUmSVucVyzJu64bzxeuVz3biPbTSCgOwX7Xq6cRVL9gqHH/Tgn0U1PcnnYchehaLUC2JCxmsBmyeFTvRThYkIKqebfCt5O7so9uf8kCRPUnKiUnC3JxtFHzqxNr1ajei5jOR4mqjEnyWRj1KeHmr55HTOejGKp0vj29o18E2dOOUxDT+ag6Z5BcSTp3rRJTQt/TjlMQ0/morj8xh6IcSoold716HjH5wylet/ww6qMo4pTKolG9HpEjaugilEifrnVhSqJu/up5xOhvR3QI5DPPar1e+6t1o3ovIhP+5N+4iIu4iIu4iPMQfwH1OaH7z24X1gAAAABJRU5ErkJggg==","999":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYgAAAGIAQAAAABzOEqLAAAC8klEQVR4nO2b0XIrIQxDpTv5/1/WfZAM7GMfQinrdCZJt3umOA62ZYDCDx//fgo00UQTTTRxIfEBAPq9KAqECFEARQgUqLpj06jeS3wA+HMG7RARAkRAua55x6ZRvZ4gCYD2A0g7ASRyKXfsHdXbCSmhSwAzHVjR7NdG9WKCtCscshyvErV+cVRvIpw/8pFTeSKVZIJyyHDKmXbcQtgfIyRR+Rm/+9oStM604xbiA8zv/pwJQuVxOM3vHdXLCedsl1jyi4WIJ4gqvXe9+3XiM98KDlx6FlS0Qhyi8Ew7riLkRE4sgYlcopil4uZRvZegQCRpu6oSJIp+ln2SwvdgOy4gWJUu88mn6AXcyXLzSpydkzPtuIqgv/90zOKjoGLJ9KqKD7bjFkJIzs4vfkSrA45eNZUOtuMCIv12VeRSsrsDlvIH993Z+ePrxKIHS4dHeVTtqxLpnT/2Ea6hHJkg5xHLQMHl1egrHm3HHQQJRpgnYchrICzVvrTdD7bjAsLxis4aCVY1XVTLtrml66tdhCS61vXKB+AJAtW6YQW0s+34+0TVV2MipLiqF+sSjZlzqh2XEYTThWbQYiRJymDPnL2jeiFRjZDayhChMS5Hf/T6xyai+u1juxWA0cOyM5zKR2vrTDtuIZw/lDkwq6u5ZNv7S3YS0edagpKsNQQ+PNH6Yx9BiBLFalQlrcsbTOyoXv/YSYjVZXfnXaXKqbFU2OvnmwgxPZKIjNRX2T3qO7t/tbF/JTJ74CCoulXOKo9LR9txAVHrtemw6yE2UgFHoWvfqN5LLOtRydvjCEjdwhIg7PMfXydW5b2qvrERK5UWKskfasctxON8VHmk9MecGFMsHmrHLcTzfFQ9iyJr79Vstbf++DqR/hWnT7IemO4iR2lV7a0z7biWoGpjdZ3LwVxD/7VRvZMglTJK49RgbWlAnx/cGK8qPywrs0v3vffvbiMe56PcR1ykR7kCqNPpp9pxC/HQH1/6H0000UQTTdxH/AdAImtEeHlvlQAAAABJRU5ErkJggg==","699":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYgAAAGIAQAAAABzOEqLAAAC7UlEQVR4nO1bSZLjMAwDpvr/X8YcQFLy3PoQRiMzqcrmoCJa4QKQpvDL25/fAgYxiEEMYhAXIn4AgH4tCgAhUBRA+TWo/EbTqt6L+AHg8wxCFCUCQjwCALW+0bSq9yK8HyCg8hMCsksQAuwcjD051I4rEVKcfO9N7AO/vKoXI0hm6PLuoKLWF1f1JkTEK59y53MBpCKZIDekNuVMO25BeD8qJFFxr/f+bAtaZ9pxC+IHWP/95QlC5nFsqbxtVS9HOGeTACg/UU4idCJxep96twnB9AFi8wvkMYIoUniyHZcgFC6wB6aotBDkcOWUg+24BUERoLOHqypBouhHeU+i8D3YjgsQzEqXypAVcUsWUKxicSknZ9pxFYLx/3dO/yduJU3PqvhgO25ByGIi8GB+LElLkJiudLAdFyBCb9dGzk0CYandB5YGf6odtyA2Prh4OPfaV0nSJ3/0IVxDAYiuFJk0UHB5Vbri0Xb894isphAdqIpO1QNJCZ4a/2hCWK1ShK1K7aYha1OmvupCSKJrXVbXgwRhNQt7QDvZjlsQBLP9xCAhdoyggrFDzat6LyLKKEJKar7FLYS7jH98HpGqIRf3o1j6CCPDT/+jCVF8kOElAKrq8mZE3MLwjwZEzF+lbmidKvmfbzNf0ojY+Xl8JEuIAh87kW/OtOMWRM731DxcqOtL0jJDhEa/akRIIoMRViuEvqtahdM/b0LIclWKh9l/glbbY/Srxn4URY8mMpnfpllZOKm50YPtuACR/dqsZx9kwyVXdGyzFj7TjlsQWz8Kyty+n/5sfSBy/KF23IJY9a5yjLraUalYMZN726rei3hcH1VjC8E/lmNQJSieacctiOf1UYhT7yJXpV9F8Br+0YUgMzQheEcWvB4AIj032ruqQSyhly5xI7Vo+McXEKQineeFa24SIkflvrKqVyEe10e5D5X9wKW+z/xuG+JxfRS1Bak8oDVgMv2PjyP2zt+nfmMQgxjEIAZxH+IvyKlnOGRzV4sAAAAASUVORK5CYII=","1299":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYgAAAGIAQAAAABzOEqLAAAC/UlEQVR4nO2by27rMAxEZy7y/788XQyHcjYX6MKqIKlJYcf1QUUrFJ+i8Muff78FLnGJS1ziEhsSHwCgzwUCogiIEAXQV9V3rCrHLsQHgJ8ziMwDRYEiJILS845F5diF8HxYD/xLEAA9AxABatyxqhx7EiwdIARQIgkx69lfjepcQpQASf4ACYqm/N2oTiJqvfIjtx6Ioq0HAVC+3JOyphy7EFBpAwD95zVuXlOOXYgPML77ZSoYV9fnw5RPG9XhBAGCngzBri48L3r4XJNHdTJB0QuTYjEEREkUl/fGH68TtucUKgZnndiaOxz06iXe+ON9ouJzChTAmgZYGfImNAzImnLsQtSXPiZDOVcc3YrNe8oWlWM7YoR9dq9KUUSQgO26po/qOAJyACLguSj5Uq7n840/XifYWlEGu7K8ybsnlzVCkDXl2IWoOVAqHUCZCvR0JJmieaM6l2AVNjqlXsG5ysSPY4z7mnLsQrg+mJwhR5jh+JB9bO1ZU45diNKPCj+qQIhEh18u712vJhCZjzx3lLYk/lDfkEBxTTm2ImwzOmHSRqV8XkcgcYcXlmMXQlTSVMnjujY40r4gyBsPvk50r0KVzLNKIY0+SfZ2AL+mHHsRAgFymBHrho2IlCjx5tsnEazaBwEwicRUQNjVkMmjOpFItKGR1iXGu//WmZNF5diKcJFDlGLP4/rWq3yra89nERqdiEzoUVl3yV7XtedT61H2oVKZ5Xd+d7hcq8qxC0FhOL0pAj763Z8Kc+djEqFRIy+fF0A0gyMdP3dU5xI2FqSYZsQy39UERI4syspybEBUf6K60kEhXq/v4KMTa9aoziW+9kelFMXeH4VuOUG1lywqxy7E1/4oPvbhjLR7OVZRkDXl2IX42h+VnYO1/SOdu44S0zW6phxbEsyOHMIm3Aa9u6rvevU68Xl+6Pq50mOSlIkqpTJpVMcT2aKGLkKJ9O5aF6ZkX3juqA4kqr8dObhwK/rpi8Ppvfn2mfmrN//HJS5xiUtcYj/iB9xenfLASks3AAAAAElFTkSuQmCC","799":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYgAAAGIAQAAAABzOEqLAAAC6klEQVR4nO1bQXIDMQiTOvn/l9UDAnanpx7iOF7SaZpmo6lZCghhU/jn4+e/gEEMYhCDGMSBiBcAMF6LIkQBzGcIFKj8xKJVPRfxAhD3GYQoUoQEEZDfV39i0aqeiwh/gIDifgvpmXgBRHDQPtnUjiMR17igw4GZzT62qgcjSCpcoPAOKmt9cFVPQjhfxS2n/EQKoqh2SDllTztOQYQ/KiVR/qrfTbY6ae1pxymIF9D/+x0JQtZxXEr5slU9HBE1mwRAxQ8qigijkER5H767EiHFHdedUBEkiGoKt7fj+xHuMKhLYiIvWawakpWrei6CcmZCVG9BUKgnCulEEE18N7bjAERFAeWyHaQXULTpKFHLl/a04yhEVA0BZNbtzlvZpicr3tiOUxAKycpvVcSkpBXZK0NpYzsOQFhvV7Z+CIXdCUu+ELo7p368HXHpB92Xy/5J7qts0qd+rEPcqC4EMttAIehV6Ypb23EGggSjMbdPJJCOiajkLbtvbMcBCObgL6gtXNnFng1GSa/39rTjLIQkIrhupKdIWUSoWbgmtJ3t+H6E9XYluyJCW2dqiN7kAGj6jwUIj6Cck1Ssqr/LRxp+9X5E6iUZF240Uh9x2LC516Z2nIK49INVxEvDCmeI1ZFMfLwb8coXajJV/V88Zn/JQkT356Xi5lgKvHli+o+l/UfVD6vsGTDWr6DRr1YiJFJyfBSvIgiKXfQXr+qpCCE8kpzWoQD12GP0q5X6leitidbWUQ2Jp7ctYG1sxwGInJrfFfa66DJy5cJ72nEK4tZ/pHjIP15x1Ez/8W5E892cQ6n5r1MUs7gvW9VzEbfzUTW0Nf/twPAgd9Wqnou4n4/yM+OglFr2VX9sTztOQdzOR+U2E7El36JWnHnUJxBUbqzOcznoGfrHVvVMBCnTKNWe3tzSUGrWF9jxxYjb+SiBXS4u6vvs312GuJ2Poi5JKi9kqKSguKcdpyCuk793/Y1BDGIQgxjEeYhfs7doPS8/2ssAAAAASUVORK5CYII=","2499":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYgAAAGIAQAAAABzOEqLAAAC+0lEQVR4nO2bzXLjMAyDgZ28/ytjDyAk57IzPVjVSnTaxnH9TUWpFH9N4YfHn58CTTTRRBNNHEh8AIA+1zihCFEAfVXjjl3lOIX4APA8gwBEgfUmQiIoPe/YVI5TCK+H9cDffPyENWNoyqpR3Ut8vj5Rnn9AhFVl7FUrR9WED1ktpHxQLv3mqG4iSj885dYEUbT1qL2K845Fo7qXgKRMtf7xmjfvKccpxAeY//sirBJlwH0+TfmyUV1OECDoxRDs6sLrovK2+E2sGNXVxMOSVwgCREl8DWDHH68TtueUV4Tl6qJicoeD3r3Ejj/eJyo+r3g8ywArQ74ITQOypxxHEbVJVcABgBxOlbyHjfBwZznOIR5JQ9q9KkURQaLWSYtHdSEBOQApY55J96Vcz+eOP14nGMPAZNlRqsGyJMQzm7irHKcQVf8Q4mTVGedyANPlXTSqewnH56TG1IMQyoIQEhKgs+tR7xPWj+QMSUUP7GHRuiPO6uGecpxCePZrGVhxeoJCzNzuNCB7ynEKkfVw6qpURbVlMQYFHOZ9UznOIpw4fLhWAEZ20bG6EqPvLMf/T8S/mv0kPijZniROZAqFe8pxChHr7dnm6C9BYvYke0eHw55yHEUkUTLNiH0rG5G4wup8+zqCSvDH9JWkAsJRDVk+qvuIRN3U+CprMjpLOJMm7V8tIWKwWVvSUAbWKx1AS0d1M1GRIDU0BcmZSC7Utj1ful/NFhKmnXrmd6fLtascpxDJ585E7rObnXgqTK/HIkKzRu5Mrw/WL6Ihi0d1L8GUPKp8XrVzVZJXZLrcV47qSqL6E5WSU2rns42aj06sVaO6l/h6Pir+FcbzUcCIQVIZ2VOOU4iv56M4TXvZ8PSOPhRkTzlOIb6ej9LTclcpHazEVUroe8pxCvH1fNSw2ozL6zgkzYu9X71OfK2HWGZDlWhXUibuJW39WEUoCapqYqB7TgjKbXIS1fmr94nqb0feqgmLnn1xOr2db1+Zv3rzbzTRRBNNNHEe8Rezc5/4dG4cwwAAAABJRU5ErkJggg=="};
+
+function showPaymentPage(item){
+  window.currentUPIBooking=item;
+  const qrPayload=upiUrl(item);
+  const embeddedQr=EMBEDDED_QR[String(item.total)] || EMBEDDED_QR['1499'];
+  $('modalContent').innerHTML=`<div class="payment-page">
+    <div class="eyebrow">UPI Payment</div>
+    <h2>Complete Your Payment</h2>
+    <p>Scan the QR code below. The <b>₹${item.total.toLocaleString('en-IN')}</b> amount is already included in the QR code.</p>
+    <div class="summary">
+      <div class="row"><span>Booking ID</span><b>${item.id}</b></div>
+      <div class="row"><span>Service</span><b>${item.service}</b></div>
+      <div class="row"><span>Date & Time</span><b>${item.date} • ${item.time}</b></div>
+      <div class="row"><span>Amount</span><b>₹${item.total.toLocaleString('en-IN')}</b></div>
+    </div>
+    <div class="upi-box">
+      <div class="qr-wrap"><img src="${embeddedQr}" alt="UPI QR Code" width="260" height="260"></div>
+      <p><b>Scan to Pay SPA</b><br><span class="upi-id">918454057269@waaxis</span><br><small style="color:var(--muted)">The payment amount is pre-filled when your UPI app supports amount prefill.</small></p>
+      <button class="btn primary" style="width:100%;margin-top:10px" onclick="openUPI('${encodeURIComponent(qrPayload)}')">Continue to UPI App →</button>
+    </div>
+    <div class="steps">
+      <div class="step"><b>1. Scan</b><small>Scan the QR with any supported UPI app.</small></div>
+      <div class="step"><b>2. Pay</b><small>The package amount is already filled.</small></div>
+      <div class="step"><b>3. Return</b><small>Come back to this page after payment.</small></div>
+    </div>
+    <p class="pay-note">This QR contains the UPI ID and fixed package amount. The website cannot verify bank settlement by itself; production payment verification needs a UPI gateway/backend.</p>
+    <button class="btn secondary" style="width:100%;margin-top:8px" onclick="closeModal()">Cancel</button>
+  </div>`;
+  $('modal').classList.add('show');
+}
+
+function openUPI(encoded){
+  sessionStorage.setItem('spaPendingUPI','1');
+  location.href=decodeURIComponent(encoded);
+}
+function resumeAfterUPI(){
+  if(sessionStorage.getItem('spaPendingUPI')!=='1' || !window.currentUPIBooking) return;
+  sessionStorage.removeItem('spaPendingUPI');
+  const item=window.currentUPIBooking;
+  item.status='Payment Returned';
+  item.paymentStatus='UPI payment initiated';
+  bookings.push(item);
+  localStorage.setItem('spaBookings',JSON.stringify(bookings));
+  showConfirmation(item);
+  $('name').value=''; $('phone').value='';
+}
+window.addEventListener('pageshow',resumeAfterUPI);
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')resumeAfterUPI()});
+function copyUPI(){navigator.clipboard?.writeText('918454057269@waaxis').then(()=>toast('UPI ID copied.')).catch(()=>toast('UPI ID: 918454057269@waaxis'))}
+function showConfirmation(item){
+  $('modalContent').innerHTML=`<div class="payment-page"><div class="success-icon">✓</div><h2>Booking Confirmation ✨</h2><p>You have returned from the UPI payment flow. Your appointment has been recorded.</p>
+  <div class="summary"><div class="row"><span>Booking ID</span><b>${item.id}</b></div><div class="row"><span>Service</span><b>${item.service}</b></div><div class="row"><span>Date & Time</span><b>${item.date} • ${item.time}</b></div><div class="row"><span>Payment</span><b>UPI — Return Recorded</b></div><div class="row"><span>Total</span><b>₹${item.total.toLocaleString('en-IN')}</b></div></div>
+  <p class="pay-note">Please keep your UPI transaction reference. This prototype does not verify bank settlement; the salon can verify the payment before the appointment.</p><button class="btn primary" onclick="closeModal()">Done</button></div>`;
+  $('modal').classList.add('show'); toast('Booking submitted successfully.');
+}
+const ADMIN_CREDENTIAL_HASH='522d76306520a1105039b7bf0803c7786fc28bcda704f2cf5553263809cabe1b';
+async function adminCredentialHash(username,password){
+  const data=new TextEncoder().encode(username+'|'+password);
+  const digest=await crypto.subtle.digest('SHA-256',data);
+  return Array.from(new Uint8Array(digest)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+let adminAuthenticated=sessionStorage.getItem('spaAdminAuth')==='1';
+function openAdmin(){
+  if(adminAuthenticated){ renderAdmin(); $('modal').classList.add('show'); return; }
+  $('modalContent').innerHTML=`<h2>Admin Login 🔐</h2><p>Only authorized staff can access the appointment dashboard.</p>
+  <form onsubmit="return adminLogin(event)" style="margin-top:18px">
+    <label>Username</label><input id="adminUsername" type="text" autocomplete="username" required placeholder="Enter username">
+    <label style="margin-top:12px">Password</label><input id="adminPassword" type="password" autocomplete="current-password" required placeholder="Enter password">
+    <button class="btn primary" type="submit" style="width:100%;margin-top:18px">Login to Admin</button>
+  </form>`;
+  $('modal').classList.add('show');
+  setTimeout(()=>$('adminUsername')?.focus(),50);
+}
+async function adminLogin(e){
+  e.preventDefault();
+  const u=$('adminUsername').value.trim(), p=$('adminPassword').value;
+  const credentialHash=await adminCredentialHash(u,p);
+  if(credentialHash===ADMIN_CREDENTIAL_HASH){
+    adminAuthenticated=true; sessionStorage.setItem('spaAdminAuth','1');
+    renderAdmin(); toast('Admin login successful.');
+  }else{ toast('Invalid username or password.'); $('adminPassword').value=''; $('adminPassword').focus(); }
+  return false;
+}
+function adminLogout(){
+  adminAuthenticated=false; sessionStorage.removeItem('spaAdminAuth'); closeModal(); toast('Admin logged out.');
+}
+function renderAdmin(){
+  const totalRevenue=bookings.reduce((a,b)=>a+b.total,0);
+  $('modalContent').innerHTML=`<h2>SPA Admin Dashboard</h2><p>Prototype admin flow — manage appointments and customer bookings.</p>
+  <div class="statgrid"><div class="stat"><small>Appointments</small><br><b>${bookings.length}</b></div><div class="stat"><small>Confirmed</small><br><b>${bookings.filter(x=>x.status==='Confirmed').length}</b></div><div class="stat"><small>Revenue</small><br><b>₹${totalRevenue.toLocaleString('en-IN')}</b></div><div class="stat"><small>Branch</small><br><b>KLN East</b></div></div>
+  <br><div class="tabs"><button class="tab active">Appointments</button><button class="tab" onclick="exportBookings()">Export CSV</button><button class="tab" onclick="clearBookings()">Clear Demo Data</button><button class="tab" onclick="adminLogout()">Logout</button></div>
+  <div style="overflow:auto"><table class="admin-table"><thead><tr><th>ID</th><th>Customer</th><th>Service</th><th>Date</th><th>Time</th><th>Payment</th><th>Status</th></tr></thead><tbody>
+  ${bookings.length?bookings.slice().reverse().map(x=>`<tr><td>${x.id}</td><td>${x.name}<br><small>${x.phone}</small></td><td>${x.service}</td><td>${x.date}</td><td>${x.time}</td><td>${x.payment}</td><td><span class="badge">${x.status}</span></td></tr>`).join(''):'<tr><td colspan="7">No bookings yet.</td></tr>'}
+  </tbody></table></div>`;
+}
+function exportBookings(){
+  if(!bookings.length){toast('No bookings to export.');return}
+  const head='ID,Name,Phone,Service,Date,Time,Payment,Total,Status\\n';
+  const body=bookings.map(x=>[x.id,x.name,x.phone,x.service,x.date,x.time,x.payment,x.total,x.status].map(v=>`"${String(v).replaceAll('"','""')}"`).join(',')).join('\\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([head+body],{type:'text/csv'}));a.download='spa-bookings.csv';a.click();
+}
+function clearBookings(){if(confirm('Clear demo bookings?')){bookings=[];localStorage.removeItem('spaBookings');renderAdmin();toast('Demo bookings cleared.')}}
+function closeModal(){$('modal').classList.remove('show')}
+$('date').min=new Date().toISOString().split('T')[0];
+</script>
+</body>
+</html>
