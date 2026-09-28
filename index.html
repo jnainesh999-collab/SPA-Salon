@@ -28,7 +28,29 @@ button,input,select{font:inherit} button{cursor:pointer}
 .editorial-grid{display:grid;grid-template-columns:1.05fr .8fr .75fr;gap:22px;align-items:stretch}.editorial-photo{border-radius:28px;overflow:hidden;min-height:330px;background:#eadfe2}.editorial-photo img{width:100%;height:100%;object-fit:cover;display:block}.editorial-copy{background:#f1eee8;border-radius:28px;padding:38px;display:flex;flex-direction:column;justify-content:center}.editorial-copy h3{font-size:38px;margin:14px 0}.editorial-copy p{color:var(--muted);line-height:1.8}.tall{min-height:500px}.payment-page{text-align:center}.payment-page h2{margin:5px 0 8px}.upi-box{background:linear-gradient(135deg,#fff1f7,#fff);border:1px solid var(--line);border-radius:22px;padding:20px;margin:18px 0}.qr-wrap{background:white;border:1px solid var(--line);border-radius:18px;padding:14px;display:inline-block;box-shadow:0 10px 25px #7a365a12}.qr-wrap img{display:block;width:220px;height:220px;image-rendering:auto}.upi-id{font-weight:900;color:var(--deep);word-break:break-all}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:left;margin:18px 0}.step{background:var(--soft);padding:12px;border-radius:14px}.step b{display:block;margin-bottom:4px}.pay-note{font-size:13px;color:var(--muted);line-height:1.5}.success-icon{font-size:52px}.toast{position:fixed;right:20px;bottom:20px;background:#2b2027;color:white;padding:14px 18px;border-radius:13px;display:none;z-index:80}.toast.show{display:block}
 @media(max-width:900px){.hero{grid-template-columns:1fr;padding-top:45px}.hero-card{min-height:420px}.cards{grid-template-columns:1fr 1fr}.editorial-grid{grid-template-columns:1fr 1fr}.tall{min-height:380px}} @media(max-width:600px){.cards{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.statgrid{grid-template-columns:repeat(2,1fr)}.navlinks .hide-mobile{display:none}.footer{flex-direction:column}.editorial-grid{grid-template-columns:1fr}.editorial-copy{min-height:320px}.hero{padding:55px 6%}.hero h1{font-size:50px}.hero-card{min-height:360px}}
 </style>
-</head>
+<style>
+:root{--pink:#e96a9b;--deep:#4b2038;--soft:#fceaf2;--cream:#fffaf7;--ink:#211b20;--muted:#776d73;--line:#eadde2;--sage:#b9c4b1;--gold:#c79a62}
+body{background:radial-gradient(circle at 10% 10%,#fdebf2 0 18%,transparent 38%),radial-gradient(circle at 90% 20%,#edf2e8 0 16%,transparent 35%),var(--cream)}
+.nav{margin:14px 4%;border:1px solid #eadde2;border-radius:999px;padding:11px 18px;box-shadow:0 12px 40px #4b20380e}
+.logo{background:var(--deep);color:#fff;padding:9px 16px;border-radius:999px;font-size:22px}
+.hero{margin:0 4%;border-radius:38px;padding:70px 6%;min-height:680px;background:linear-gradient(120deg,#fff8f5cc,#f8e4ecdd,#edf1e8dd);position:relative}
+.hero:before{content:'EST. 2026';position:absolute;right:5%;top:35px;letter-spacing:4px;font-size:11px;font-weight:800;color:#806e76}
+.hero h1{letter-spacing:-3px}
+.hero-card{border:8px solid #ffffffaa;min-height:550px;transform:rotate(1deg);box-shadow:0 35px 80px #4b203825}
+.hero-card .big{font-size:82px}
+.btn.primary{background:var(--deep)}
+.section{padding:95px 6%}
+.section h2{letter-spacing:-1px}
+.cards{gap:18px}
+.card{position:relative;overflow:hidden}
+.card:after{content:'SPA';position:absolute;right:-15px;bottom:-25px;font:700 80px 'Playfair Display';color:#4b203808}
+.editorial{background:#fff}
+.booking{border-radius:34px;background:linear-gradient(135deg,#fff,#fff4f8);box-shadow:0 25px 70px #4b203814}
+.marquee{margin:28px 4%;overflow:hidden;border-block:1px solid var(--line);white-space:nowrap;padding:15px 0;color:var(--deep);font-weight:800;letter-spacing:3px}
+.marquee span{display:inline-block;animation:slide 18s linear infinite}
+@keyframes slide{to{transform:translateX(-50%)}}
+@media(max-width:600px){.hero{margin:0 3%;border-radius:28px;min-height:auto}.hero:before{display:none}.hero-card{transform:none}.nav{margin:8px 3%}.logo{font-size:20px}.section{padding:65px 5%}}
+</style></head>
 <body>
 <nav class="nav">
   <div class="logo">SPA</div>
@@ -55,7 +77,7 @@ button,input,select{font:inherit} button{cursor:pointer}
   </div>
 </section>
 
-<section class="section" id="services">
+<div class="marquee"><span>RELAX • RESTORE • GLOW • RENEW • SPA • RELAX • RESTORE • GLOW • RENEW • SPA • </span></div><section class="section" id="services">
   <h2>Signature Services</h2><p>Choose a ritual and reserve your preferred time online.</p>
   <div class="cards">
     <div class="card"><div class="icon">🧖‍♀️</div><h3>Relaxation Massage</h3><p>Calming full-body wellness session.</p><div class="price">₹1,499</div></div>
@@ -81,7 +103,10 @@ button,input,select{font:inherit} button{cursor:pointer}
 </section>
 
 <section class="section" id="booking">
-  <h2>Book Your Appointment</h2><p>Select a service, date and time. UPI payment opens a payment page with a QR code and UPI-app redirect.</p>
+  <h2>Book Your Appointment</h2><p>Select a service, date and time. Your reset starts with one simple booking.</p><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:900px;margin:35px auto 0">
+<div class="card" style="text-align:center;padding:20px"><b style="font-size:25px">01</b><br><small>PERSONALISED RITUALS</small></div>
+<div class="card" style="text-align:center;padding:20px"><b style="font-size:25px">02</b><br><small>CALM, PREMIUM SPACE</small></div>
+<div class="card" style="text-align:center;padding:20px"><b style="font-size:25px">03</b><br><small>EFFORTLESS BOOKING</small></div></div>
   <div class="booking">
     <div class="grid">
       <div class="field"><label>Full Name</label><input id="name" placeholder="Your name"></div>
