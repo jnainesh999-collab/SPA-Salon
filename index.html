@@ -5,28 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SPA — Premium Beauty & Wellness</title>
 <style>
-:root{--pink:#e83e8c;--deep:#8f245b;--soft:#fff0f7;--cream:#fffafc;--ink:#2d2430;--muted:#756a73;--line:#f0dbe6;--green:#2d9b6f}
-*{box-sizing:border-box} body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--ink);background:var(--cream)}
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+:root{--pink:#d95b8d;--deep:#6f304d;--soft:#f9e8ef;--cream:#fcf8f6;--ink:#292329;--muted:#756b70;--line:#ead9df;--sage:#87927e;--gold:#b58b63}
+
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:'DM Sans',Arial,sans-serif;color:var(--ink);background:var(--cream)} h1,h2,h3{font-family:'Playfair Display',Georgia,serif} body:before{content:'';position:fixed;inset:0;pointer-events:none;opacity:.18;background-image:radial-gradient(#8b6675 0.6px,transparent 0.6px);background-size:16px 16px;z-index:-1}
 button,input,select{font:inherit} button{cursor:pointer}
-.nav{position:sticky;top:0;z-index:20;background:#fff9fcdd;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:14px 6%}
-.logo{font-size:28px;font-weight:900;letter-spacing:5px;color:var(--deep)} .navlinks{display:flex;gap:20px;align-items:center}
+.nav{position:sticky;top:0;z-index:20;background:#fffaf6e8;backdrop-filter:blur(18px);border-bottom:1px solid #ead9df;display:flex;align-items:center;justify-content:space-between;padding:16px 6%}
+.logo{font-family:'Playfair Display',Georgia,serif;font-size:30px;font-weight:700;letter-spacing:3px;color:var(--deep)} .navlinks{display:flex;gap:20px;align-items:center}
 .navlinks button,.link{border:0;background:none;color:var(--ink);font-weight:600}
-.btn{border:0;border-radius:999px;padding:12px 20px;font-weight:800}.primary{background:var(--pink);color:white}.secondary{background:var(--soft);color:var(--deep)}
-.hero{padding:72px 6%;display:grid;grid-template-columns:1.1fr .9fr;gap:45px;align-items:center;background:radial-gradient(circle at 85% 25%,#ffd6e8,transparent 35%),linear-gradient(135deg,#fff,#fff4f9)}
-.eyebrow{color:var(--pink);font-weight:900;text-transform:uppercase;letter-spacing:2px}.hero h1{font-size:clamp(42px,6vw,76px);line-height:.98;margin:14px 0}.hero p{font-size:18px;color:var(--muted);max-width:620px;line-height:1.7}
-.hero-card{background:linear-gradient(145deg,#e83e8c,#9b2d63);color:white;border-radius:34px;padding:32px;min-height:390px;box-shadow:0 25px 60px #c75b8a40;display:flex;flex-direction:column;justify-content:end}
-.hero-card .big{font-size:76px;font-weight:900;opacity:.9}
-.section{padding:65px 6%}.section h2{text-align:center;font-size:38px;margin:0 0 10px}.section>p{text-align:center;color:var(--muted);margin-bottom:35px}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card{background:white;border:1px solid var(--line);border-radius:24px;padding:25px;box-shadow:0 12px 30px #7a365a0b}.card h3{margin:10px 0}.price{font-size:25px;font-weight:900;color:var(--deep)}.icon{font-size:35px}
+.btn{border:0;border-radius:999px;padding:13px 21px;font-weight:700;transition:.25s transform,.25s box-shadow}.btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px #7a365a18}.primary{background:var(--deep);color:white}.secondary{background:var(--soft);color:var(--deep)}
+.hero{padding:78px 6%;display:grid;grid-template-columns:1fr .95fr;gap:55px;align-items:center;background:linear-gradient(135deg,#fcf7f3,#f8e9ee 60%,#eef0e9);overflow:hidden}
+.eyebrow{color:var(--deep);font-weight:800;text-transform:uppercase;letter-spacing:2.5px;font-size:12px}.hero h1{font-size:clamp(48px,6.5vw,82px);line-height:.94;margin:16px 0}.hero p{font-size:18px;color:var(--muted);max-width:620px;line-height:1.75}.hero-card{position:relative;min-height:540px;border-radius:34px;overflow:hidden;box-shadow:0 30px 70px #6f304d22;background:url('https://angloswann.com/cdn/shop/articles/beauty-salon-for-sale_66d12cc6-7c85-4cfe-9e8e-4772d3e1fa80.png?v=1777372419') center/cover;display:flex;flex-direction:column;justify-content:end;padding:30px}.hero-card:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,#2b1821cc)}.hero-card>*{position:relative;z-index:1}.hero-card .big{font-family:'Playfair Display',serif;font-size:70px;font-weight:600;color:white;letter-spacing:4px}.hero-card h2{color:white;font-size:34px;margin:5px 0}.hero-card p{color:#fff;margin:0;line-height:1.6}
+.section{padding:80px 6%}.section h2{text-align:center;font-size:44px;margin:0 0 10px}.section>p{text-align:center;color:var(--muted);margin-bottom:35px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.card{background:#fffdfc;border:1px solid var(--line);border-radius:28px;padding:28px;box-shadow:0 14px 35px #7a365a0b;transition:.3s}.card:hover{transform:translateY(-5px);box-shadow:0 20px 45px #7a365a18}.card h3{margin:10px 0;font-size:24px}.price{font-size:24px;font-weight:800;color:var(--deep)}.icon{font-size:35px}.service-tag{display:inline-block;background:var(--soft);color:var(--deep);padding:6px 10px;border-radius:99px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px}
 .booking{max-width:980px;margin:auto;background:white;border:1px solid var(--line);border-radius:28px;padding:28px;box-shadow:0 20px 50px #7a365a12}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.field label{display:block;font-weight:800;margin-bottom:7px}.field input,.field select{width:100%;padding:13px;border:1px solid #e5ccd8;border-radius:13px;background:#fff}.full{grid-column:1/-1}
 .summary{background:var(--soft);border-radius:18px;padding:18px;margin:20px 0}.row{display:flex;justify-content:space-between;padding:7px 0}
-.footer{padding:35px 6%;background:#281a23;color:white;display:flex;justify-content:space-between;gap:20px}.footer small{color:#d9cbd2}
+.footer{padding:45px 6%;background:#2b2027;color:white;display:flex;justify-content:space-between;gap:20px}.footer small{color:#d9cbd2}
 .modal{display:none;position:fixed;inset:0;background:#20151ccc;z-index:50;align-items:center;justify-content:center;padding:18px}.modal.show{display:flex}.modalbox{background:white;border-radius:24px;max-width:760px;width:100%;max-height:90vh;overflow:auto;padding:28px}
 .close{float:right;border:0;background:#f8e8ef;border-radius:50%;width:36px;height:36px}
 .tabs{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap}.tab{border:1px solid var(--line);background:white;padding:9px 15px;border-radius:999px}.tab.active{background:var(--pink);color:white}
 .statgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.stat{background:var(--soft);border-radius:18px;padding:18px}.stat b{font-size:27px}.admin-table{width:100%;border-collapse:collapse}.admin-table th,.admin-table td{padding:12px;border-bottom:1px solid var(--line);text-align:left}.badge{padding:5px 9px;border-radius:999px;background:#eaf8f2;color:#16734e;font-size:12px;font-weight:800}
-.payment-page{text-align:center}.payment-page h2{margin:5px 0 8px}.upi-box{background:linear-gradient(135deg,#fff1f7,#fff);border:1px solid var(--line);border-radius:22px;padding:20px;margin:18px 0}.qr-wrap{background:white;border:1px solid var(--line);border-radius:18px;padding:14px;display:inline-block;box-shadow:0 10px 25px #7a365a12}.qr-wrap img{display:block;width:220px;height:220px;image-rendering:auto}.upi-id{font-weight:900;color:var(--deep);word-break:break-all}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:left;margin:18px 0}.step{background:var(--soft);padding:12px;border-radius:14px}.step b{display:block;margin-bottom:4px}.pay-note{font-size:13px;color:var(--muted);line-height:1.5}.success-icon{font-size:52px}.toast{position:fixed;right:20px;bottom:20px;background:#2b2027;color:white;padding:14px 18px;border-radius:13px;display:none;z-index:80}.toast.show{display:block}
-@media(max-width:800px){.hero{grid-template-columns:1fr;padding-top:45px}.cards{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.statgrid{grid-template-columns:repeat(2,1fr)}.navlinks .hide-mobile{display:none}.footer{flex-direction:column}}
+.editorial-grid{display:grid;grid-template-columns:1.05fr .8fr .75fr;gap:22px;align-items:stretch}.editorial-photo{border-radius:28px;overflow:hidden;min-height:330px;background:#eadfe2}.editorial-photo img{width:100%;height:100%;object-fit:cover;display:block}.editorial-copy{background:#f1eee8;border-radius:28px;padding:38px;display:flex;flex-direction:column;justify-content:center}.editorial-copy h3{font-size:38px;margin:14px 0}.editorial-copy p{color:var(--muted);line-height:1.8}.tall{min-height:500px}.payment-page{text-align:center}.payment-page h2{margin:5px 0 8px}.upi-box{background:linear-gradient(135deg,#fff1f7,#fff);border:1px solid var(--line);border-radius:22px;padding:20px;margin:18px 0}.qr-wrap{background:white;border:1px solid var(--line);border-radius:18px;padding:14px;display:inline-block;box-shadow:0 10px 25px #7a365a12}.qr-wrap img{display:block;width:220px;height:220px;image-rendering:auto}.upi-id{font-weight:900;color:var(--deep);word-break:break-all}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:left;margin:18px 0}.step{background:var(--soft);padding:12px;border-radius:14px}.step b{display:block;margin-bottom:4px}.pay-note{font-size:13px;color:var(--muted);line-height:1.5}.success-icon{font-size:52px}.toast{position:fixed;right:20px;bottom:20px;background:#2b2027;color:white;padding:14px 18px;border-radius:13px;display:none;z-index:80}.toast.show{display:block}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding-top:45px}.hero-card{min-height:420px}.cards{grid-template-columns:1fr 1fr}.editorial-grid{grid-template-columns:1fr 1fr}.tall{min-height:380px}} @media(max-width:600px){.cards{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.statgrid{grid-template-columns:repeat(2,1fr)}.navlinks .hide-mobile{display:none}.footer{flex-direction:column}.editorial-grid{grid-template-columns:1fr}.editorial-copy{min-height:320px}.hero{padding:55px 6%}.hero h1{font-size:50px}.hero-card{min-height:360px}}
 </style>
 </head>
 <body>
@@ -64,6 +64,19 @@ button,input,select{font:inherit} button{cursor:pointer}
     <div class="card"><div class="icon">🌸</div><h3>Body Scrub</h3><p>Gentle exfoliation and skin-refresh ritual.</p><div class="price">₹1,299</div></div>
     <div class="card"><div class="icon">💅</div><h3>Beauty Care</h3><p>Premium grooming and beauty essentials.</p><div class="price">₹799</div></div>
     <div class="card"><div class="icon">💎</div><h3>Premium Wellness Package</h3><p>Curated combination of signature treatments.</p><div class="price">₹2,499</div></div>
+  </div>
+</section>
+
+<section class="section editorial" id="experience">
+  <div style="max-width:780px;margin:0 auto 30px;text-align:center">
+    <div class="eyebrow">The SPA experience</div>
+    <h2>Beauty, softly curated.</h2>
+    <p>Warm textures, natural tones and treatment-led photography bring the calm of the studio to your screen.</p>
+  </div>
+  <div class="editorial-grid">
+    <div class="editorial-photo tall"><img src="https://a5ecf35d333658914012.cdn6.editmysite.com/uploads/b/a5ecf35d333658914012afe5718e5d689e817e3d1a501c643834cf2fbb7f143c/IMG_4582%202_1766980608.JPG?optimize=medium&width=2400" alt="Relaxing facial treatment"></div>
+    <div class="editorial-copy"><span class="service-tag">Rituals</span><h3>Designed for your reset.</h3><p>From glow rituals to head-and-shoulder therapy, every appointment is designed around a slower, more personal beauty experience.</p><button class="btn primary" onclick="scrollToId('booking')">Reserve your ritual</button></div>
+    <div class="editorial-photo"><img src="https://jp.pinterest.com/pin/124271270961595025/" alt="Skincare inspiration" onerror="this.style.display='none'"></div>
   </div>
 </section>
 
