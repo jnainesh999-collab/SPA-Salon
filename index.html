@@ -50,6 +50,8 @@ body{background:radial-gradient(circle at 10% 10%,#fdebf2 0 18%,transparent 38%)
 .marquee span{display:inline-block;animation:slide 18s linear infinite}
 @keyframes slide{to{transform:translateX(-50%)}}
 @media(max-width:600px){.hero{margin:0 3%;border-radius:28px;min-height:auto}.hero:before{display:none}.hero-card{transform:none}.nav{margin:8px 3%}.logo{font-size:20px}.section{padding:65px 5%}}
+</style><style>
+.shop-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:28px}.cart-pill{position:relative;background:#4b2038;color:#fff;border:0;border-radius:999px;padding:12px 18px;font-weight:800}.cart-count{background:#e96a9b;border-radius:50%;padding:2px 7px;margin-left:5px}.product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.product-card{background:#fff;border:1px solid var(--line);border-radius:26px;overflow:hidden;box-shadow:0 15px 35px #4b20380d;transition:.25s}.product-card:hover{transform:translateY(-5px);box-shadow:0 24px 50px #4b203818}.product-art{height:210px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#fce9f1,#f6f0e9);font-size:72px}.product-info{padding:20px}.rating{color:#b47a29;font-weight:800;font-size:13px}.product-name{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;margin:7px 0;min-height:54px}.product-price{font-size:22px;font-weight:900;color:var(--deep)}.amazon-link{display:block;text-align:center;margin-top:8px;color:var(--deep);font-size:12px;font-weight:800;text-decoration:underline}.cart-drawer{position:fixed;right:-430px;top:0;width:min(430px,100%);height:100%;background:#fff;z-index:90;box-shadow:-20px 0 60px #0002;padding:25px;transition:.3s;overflow:auto}.cart-drawer.open{right:0}.cart-overlay{display:none;position:fixed;inset:0;background:#211b2055;z-index:89}.cart-overlay.open{display:block}.cart-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}.qty{display:flex;align-items:center;gap:8px;margin-top:7px}.qty button{border:1px solid var(--line);background:#fff;border-radius:8px;width:28px;height:28px}.shop-note{font-size:13px;color:var(--muted);max-width:700px;line-height:1.6}@media(max-width:1000px){.product-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.product-grid{grid-template-columns:1fr}.shop-head{align-items:start;flex-direction:column}}
 </style></head>
 <body>
 <nav class="nav">
@@ -102,7 +104,13 @@ body{background:radial-gradient(circle at 10% 10%,#fdebf2 0 18%,transparent 38%)
   </div>
 </section>
 
-<section class="section" id="booking">
+<section class="section" id="shop">
+<div class="shop-head"><div><div class="eyebrow">SPA Edit • Premium Beauty Shop</div><h2 style="text-align:left;margin:8px 0">Curated beauty essentials.</h2><p style="text-align:left;margin:0" class="shop-note">A hand-picked selection of premium and highly rated beauty products available on Amazon India. Add your favourites to the SPA cart, then purchase securely on Amazon.</p></div><button class="cart-pill" onclick="openCart()">🛍 Cart <span class="cart-count" id="cartCount">0</span></button></div>
+<div class="product-grid">
+<article class="product-card"><div class="product-art">🫧</div><div class="product-info"><div class="rating">★ 4.2 · 13,599 ratings</div><div class="product-name">CeraVe Moisturizing Cream</div><div class="product-price">₹359</div><small style="color:var(--muted)">Premium beauty pick</small><button class="btn primary" style="width:100%;margin-top:14px" onclick="addProduct(0)">Add to Cart</button><a class="amazon-link" href="https://www.amazon.in/CeraVe-Moisturizers-Moisturizing-Cream-Very/dp/B07CH8F17Q" target="_blank" rel="noopener">View on Amazon.in ↗</a></div></article><article class="product-card"><div class="product-art">✨</div><div class="product-info"><div class="rating">★ 4.5 · 1,363 ratings</div><div class="product-name">The Ordinary Niacinamide 10% + Zinc 1%</div><div class="product-price">₹1,249</div><small style="color:var(--muted)">Premium beauty pick</small><button class="btn primary" style="width:100%;margin-top:14px" onclick="addProduct(1)">Add to Cart</button><a class="amazon-link" href="https://www.amazon.in/Ordinary-Niacinamide-Zinc-30ml-Pack/dp/B07D744GFJ" target="_blank" rel="noopener">View on Amazon.in ↗</a></div></article><article class="product-card"><div class="product-art">🌸</div><div class="product-info"><div class="rating">★ 4.3 · 8,240 ratings</div><div class="product-name">DOT & KEY Ceramides Moisturizer</div><div class="product-price">₹335</div><small style="color:var(--muted)">Premium beauty pick</small><button class="btn primary" style="width:100%;margin-top:14px" onclick="addProduct(2)">Add to Cart</button><a class="amazon-link" href="https://www.amazon.in/Ceramides-Hyaluronic-Hydrating-Probiotic-Barrier/dp/B0BDVG99J5" target="_blank" rel="noopener">View on Amazon.in ↗</a></div></article><article class="product-card"><div class="product-art">💧</div><div class="product-info"><div class="rating">★ 4.4 · 5,000+ ratings</div><div class="product-name">CeraVe Hydrating Cleanser</div><div class="product-price">₹641</div><small style="color:var(--muted)">Premium beauty pick</small><button class="btn primary" style="width:100%;margin-top:14px" onclick="addProduct(3)">Add to Cart</button><a class="amazon-link" href="https://www.amazon.in/" target="_blank" rel="noopener">View on Amazon.in ↗</a></div></article>
+</div>
+</section>
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div><aside class="cart-drawer" id="cartDrawer"><button class="close" onclick="closeCart()">×</button><h2>Your SPA Cart</h2><div id="cartItems"></div><div class="summary"><div class="row"><span>Total</span><b id="cartTotal">₹0</b></div></div><button class="btn primary" style="width:100%" onclick="buyCart()">Buy Selected Products on Amazon</button><p class="shop-note" style="margin-top:12px">The SPA cart is a selection list. Amazon handles the actual checkout, delivery, payment and order tracking.</p></aside><section class="section" id="booking">
   <h2>Book Your Appointment</h2><p>Select a service, date and time. Your reset starts with one simple booking.</p><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:900px;margin:35px auto 0">
 <div class="card" style="text-align:center;padding:20px"><b style="font-size:25px">01</b><br><small>PERSONALISED RITUALS</small></div>
 <div class="card" style="text-align:center;padding:20px"><b style="font-size:25px">02</b><br><small>CALM, PREMIUM SPACE</small></div>
@@ -278,5 +286,22 @@ function clearBookings(){if(confirm('Clear demo bookings?')){bookings=[];localSt
 function closeModal(){$('modal').classList.remove('show')}
 $('date').min=new Date().toISOString().split('T')[0];
 </script>
-</body>
+
+<script>
+const spaProducts=[
+{name:'CeraVe Moisturizing Cream',price:359,url:'https://www.amazon.in/CeraVe-Moisturizers-Moisturizing-Cream-Very/dp/B07CH8F17Q'},
+{name:'The Ordinary Niacinamide 10% + Zinc 1%',price:1249,url:'https://www.amazon.in/Ordinary-Niacinamide-Zinc-30ml-Pack/dp/B07D744GFJ'},
+{name:'DOT & KEY Ceramides Moisturizer',price:335,url:'https://www.amazon.in/Ceramides-Hyaluronic-Hydrating-Probiotic-Barrier/dp/B0BDVG99J5'},
+{name:'CeraVe Hydrating Cleanser',price:641,url:'https://www.amazon.in/'}
+];
+let spaCart=JSON.parse(localStorage.getItem('spaCart')||'[]');
+function saveCart(){localStorage.setItem('spaCart',JSON.stringify(spaCart));renderCart()}
+function addProduct(i){const x=spaCart.find(a=>a.i===i);if(x)x.qty++;else spaCart.push({i,qty:1});saveCart();openCart();toast(spaProducts[i].name+' added to cart.')}
+function changeQty(i,d){const x=spaCart.find(a=>a.i===i);if(!x)return;x.qty+=d;if(x.qty<1)spaCart=spaCart.filter(a=>a.i!==i);saveCart()}
+function renderCart(){const box=document.getElementById('cartItems');if(!box)return;let count=0,total=0;box.innerHTML=spaCart.length?spaCart.map(x=>{const p=spaProducts[x.i];count+=x.qty;total+=p.price*x.qty;return '<div class="cart-item"><div style="font-size:32px">🛍️</div><div style="flex:1"><b>'+p.name+'</b><br><span>₹'+p.price.toLocaleString('en-IN')+'</span><div class="qty"><button onclick="changeQty('+x.i+',-1)">−</button><b>'+x.qty+'</b><button onclick="changeQty('+x.i+',1)">+</button></div></div></div>'}).join(''):'<p>Your cart is empty. Choose products from the SPA Edit.</p>';document.getElementById('cartCount').textContent=count;document.getElementById('cartTotal').textContent='₹'+total.toLocaleString('en-IN')}
+function openCart(){document.getElementById('cartDrawer').classList.add('open');document.getElementById('cartOverlay').classList.add('open');renderCart()}
+function closeCart(){document.getElementById('cartDrawer').classList.remove('open');document.getElementById('cartOverlay').classList.remove('open')}
+function buyCart(){if(!spaCart.length){toast('Your cart is empty.');return}const first=spaProducts[spaCart[0].i];window.open(first.url,'_blank');toast('Opening Amazon for your selected product.')}
+renderCart();
+</script></body>
 </html>
